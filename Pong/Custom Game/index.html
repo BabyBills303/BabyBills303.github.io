@@ -1,0 +1,49 @@
+<html>
+    <head>
+    <title> index </title>
+    <script src="https://simplycodingcourses.com/files/simply.js"></script>
+    <script>
+    function start(){
+        sjs.open();
+        var menu_text = new sjs.Text("Menu",28,"Black")
+        menu_text.centerH();
+        
+
+
+        var game_text = new sjs.Text("Use the Arrow Keys to Control the Player. ",25,"#ff0");
+        game_text.centerH().offset(0, 49);
+    
+        var game_t = new sjs.Text("Gallons = 1 point ",28,"#ffffff");
+        game_t.centerH().offset(0, 100);
+        
+        var game_r = new sjs.Text("Collect Gallons. ",28,"#0000A0");
+        game_r.centerH().offset(0, 240);
+
+        var game_d = new sjs.Text("To win you Have five seconds to earn 10 points. ",23,"#8b0000");
+        game_d.centerH().offset(0, 285);
+        
+        var game_v = new sjs.Text("By: Jade Santana Hernandez.",25,"#FFB6C1");
+        game_v.centerH().offset(0, 330);
+        
+
+        var startBtn = new sjs.Button("Start", function(){
+            window.location = "cg.html";
+        });
+
+        startBtn.center();
+
+
+       
+
+
+
+
+    }//end start
+</script>
+    </head>
+    <body onload="start()">
+        <h1> Custom Game</h1>
+
+    <div id="target" style="margin:auto;background:grey;"></div>
+    </body>
+</html>
