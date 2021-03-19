@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custome Game</title>
+    <script src="https://simplycodingcourses.com/files/simply.js"></script>
+    <script>
+        function start(){
+            sjs.open("target", 800, 500);
+            var bg = new sjs.Image("Images/hills.png");
+            bg.setSize(sjs.getWidth(), sjs.getHeight());
+            //Player Properties
+            var rc = new sjs.Image("Images/Red car.png");
+            rc.type = "player";
+            rc.setSize(200, 169-10);
+            rc.setGravity(3);
+            rc.bottom();
+            rc.friction = .1;
+            rc.accel = .5;
+            // rc.bounce(.5);
+            //KeyDown Functions
+            sjs.keyDown(RIGHT_KEY, function(){
+                rc.pushRight();  
+            });
+            sjs.keyDown(LEFT_KEY, function(){
+                rc.pushLeft();
+            });   
+            sjs.keyDown(UP_KEY, function(){
+                rc.pushUp();
+            });
+            sjs.keyDown(DOWN_KEY, function(){
+                rc.pushDown();
+            });
+            var cd = 10;
+            var countdown_txt = new sjs.Text("Countdown:", 29, "Red" );
+            countdown_txt.center().top();
+            var count = setInterval(function(){
+                var x = Math.floor(Math.random() * 783);
+                var y = Math.floor(Math.random() * 470);
+                var Points = new sjs.Image("Images/points.png");
+                Points.type = "points"
+                Points.setSize(140,90)
+                Points.center();
+                // Points.scaleSize(.5 + Math.random() * 1.2);
+                Points.moveTo(x,y);
+                cd --
+                countdown_txt.setText("Countdown:"+ cd)
+                if(cd === 0){
+                    clearInterval(count);
+                    {window.location = "gameover.html"}
+                }
+
+            },1000);
+
+            
+
+            
+            var score = 0;
+            var score_txt = new sjs.Text("Score: 0", 29, "Purple")
+            sjs.onHit("player","points", function(player,points){
+                    score = score + .5; 
+                    score_txt.setText("Score: "+score)
+                    localStorage.setItem("score", score);
+                    if(score >= 100){window.location = "win.html";}
+                });         
+                sjs.onHit("player","points", function(player,points){
+                    score = score + 1; 
+                    score_txt.setText("Score: "+score)
+                    localStorage.setItem("score", score);
+                    if(score >= 15){window.location = "win.html";}
+                    else {
+                      setInterval(function(){
+                    if(score <= 15){window.location = "gameover.html"};
+                      }, 10000);
+                   };
+                   
+                   sjs.onHit("player","points", function(x,y){
+                    if(x.getWidth() > y.getWidth() && x.getHeight() > y.getHeight()) {
+                            score = score + 1;
+                            score_txt.setText("Score: "+score)
+                            localStorage.setItem("score", score);
+                            
+                            if(score >= 15){window.location = "win.html";
+                    }
+
+                    } else {
+                       
+                         x.destroy();
+                        
+
+                    }
+                        y.destroy(); {
+                            // (score <= 10)
+                            // {window.location = "gameover.html"};
+                        }
+                                          });
+                    // var countdown_txt = new sjs.Text("Countdown: 0", 29, "Red")
+                    // countdown_txt.center();
+                    // countdown_txt.top();
+                
+                
+
+                });  
+                   
+                
+                
+ 
+        } //end start function
+    </script>
+</head>
+<body onload = "start()">
+    <h1>Custome Game</h1>
+
+    <div id = "target"  style="margin:auto;background:grey;"></div>
+</body>
+</html>

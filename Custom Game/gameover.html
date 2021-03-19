@@ -1,0 +1,37 @@
+<html>
+    <head>
+    <title> index </title>
+    <script src="https://simplycodingcourses.com/files/simply.js"></script>
+    <script>
+    function start(){
+        sjs.open();
+        var menu_text = new sjs.Text("Menu",28,"Black")
+        menu_text.centerH();
+        
+
+
+        var game_text = new sjs.Text("You LOST!! ",28,"#ff0");
+        game_text.centerH().offset(0, 30);
+        
+
+        var startBtn = new sjs.Button("Restart", function(){
+            window.location = "index.html";
+        });
+
+        startBtn.center();
+
+
+       
+
+
+
+
+    }//end start
+</script>
+    </head>
+    <body onload="start()">
+        <h1> Custom Game</h1>
+
+    <div id="target" style="margin:auto;background:grey;"></div>
+    </body>
+</html>
